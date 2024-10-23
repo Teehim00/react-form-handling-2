@@ -1,6 +1,35 @@
+import { useState } from "react";
+
 function ProductForm() {
+
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+
+
+function handleSubmit(e){
+  e.preventDefault();
+
+  let newFormData = {
+    name: name,
+    image: image,
+    price: price,
+    description: description,
+  };
+
+  alert(JSON.stringify(newFormData));
+
+  setName("");
+  setImage("");
+  setPrice("");
+  setDescription("");
+}
+
+
+
   return (
-    <form className="post-form">
+    <form className="post-form" onSubmit={handleSubmit}>
       <h1>Create Product Form</h1>
       <div className="input-container">
         <label>
@@ -9,8 +38,9 @@ function ProductForm() {
             id="name"
             name="name"
             type="text"
+            value={name}
             placeholder="Enter name here"
-            onChange={() => {}}
+            onChange={(e) => {setName(e.target.value)}}
           />
         </label>
       </div>
@@ -21,8 +51,9 @@ function ProductForm() {
             id="image"
             name="image"
             type="text"
+            value={image}
             placeholder="Enter image url here"
-            onChange={() => {}}
+            onChange={(e) => {setImage(e.target.value)}}
           />
         </label>
       </div>
@@ -34,7 +65,8 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
-            onChange={() => {}}
+            value={price}
+            onChange={(e) => {setPrice(e.target.value)}}
           />
         </label>
       </div>
@@ -46,7 +78,8 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
-            onChange={() => {}}
+            value={description}
+            onChange={(e) => {setDescription(e.target.value)}}
             rows={4}
             cols={30}
           />
